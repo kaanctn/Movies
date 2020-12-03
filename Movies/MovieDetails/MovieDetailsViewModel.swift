@@ -41,6 +41,7 @@ class MovieDetailsViewModel {
     }
     
     var sections = PublishSubject<[Section]>()
+    var error = PublishSubject<Error>()
     
     private var movieDetails: MovieDetail?
     private var cast: [Cast]?
@@ -67,7 +68,7 @@ class MovieDetailsViewModel {
             let section2 = Section(model: .cast, items: cast.map({.cast(model: $0)}))
             self?.sections.onNext([section1, section2])
         }, onError: { [weak self] (error) in
-            
+            self?.error.onNext(error)
         })
         .disposed(by: disposeBag)
     }

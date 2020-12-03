@@ -107,5 +107,13 @@ class MovieDetailsViewController: UIViewController {
                 }
             })
             .disposed(by: disposeBag)
+        
+        viewModel.error
+            .subscribe ( onNext: { [weak self] error in
+                let vc = UIAlertController(title: nil, message: error.localizedDescription, preferredStyle: .alert)
+                vc.addAction(UIAlertAction(title: "OK", style: .destructive, handler: nil))
+                self?.present(vc, animated: true, completion: nil)
+            })
+            .disposed(by: disposeBag)
     }
 }
