@@ -119,7 +119,6 @@ class PopularMoviesViewController: UIViewController {
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
             .distinctUntilChanged()
             .subscribe(onNext: { [weak self] query in
-                debugPrint("query: \(query)")
                 self?.viewModel.search(query: query)
             })
             .disposed(by: disposeBag)

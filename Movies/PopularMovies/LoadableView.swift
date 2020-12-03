@@ -35,7 +35,6 @@ extension UIView: LoadableView {
     
     func endLoading() {
         if let view = self.viewWithTag(999) {
-            print("removed: \(view)")
             view.removeFromSuperview()
         }
     }
